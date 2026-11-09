@@ -1,0 +1,328 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------
+   Design tokens — 70% dark dive bar, 30% psychedelic colour.
+   Ink + cream do the heavy lifting; the brights are used sparingly.
+------------------------------------------------------------------- */
+@theme {
+  --color-ink: #11100f;
+  --color-soot: #1b1613;
+  --color-smoke: #3a322c;
+  --color-cream: #f2e9d8;
+  --color-paper: #e9dcc3;
+  --color-orange: #f77a28;
+  --color-pink: #f65cb3;
+  --color-acid: #a1c76a;
+  --color-purple: #8d56db;
+
+  --font-display: 'League Gothic', 'Arial Narrow', 'Helvetica Neue', sans-serif;
+  --font-groovy: 'Caprasimo', 'Cooper Black', Georgia, serif;
+  --font-body: 'Libre Franklin Variable', 'Franklin Gothic Medium', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Courier Prime', ui-monospace, 'Courier New', monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
+    overflow-x: clip;
+    background: var(--color-ink);
+  }
+  body {
+    font-family: var(--font-body);
+    color: var(--color-cream);
+    background: var(--color-ink);
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: var(--color-pink);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-acid);
+    outline-offset: 3px;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 0.86;
+    letter-spacing: 0.005em;
+  }
+}
+
+/* ---------- Texture ---------- */
+/* Fine analog grain over the whole page. Purely decorative. */
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background: url('/grain.png');
+  opacity: 0.55;
+}
+
+/* Halftone dots, used on photo frames */
+.halftone {
+  background-image: radial-gradient(currentColor 1px, transparent 1.4px);
+  background-size: 6px 6px;
+}
+
+/* ---------- Type helpers ---------- */
+.label {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--stroke, var(--color-cream));
+}
+@media (min-width: 768px) {
+  .outline-text {
+    -webkit-text-stroke-width: 3px;
+  }
+}
+
+/* ---------- Buttons: flat, square, hard shadow ---------- */
+.btn {
+  --btn-bg: var(--color-orange);
+  --btn-fg: var(--color-ink);
+  --btn-shadow: var(--color-cream);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.7rem 1.15rem 0.6rem;
+  min-height: 3rem;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: 2px solid var(--btn-fg);
+  box-shadow: 5px 5px 0 var(--btn-shadow);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    background-color 0.12s ease;
+}
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--btn-shadow);
+}
+.btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 1px 1px 0 var(--btn-shadow);
+}
+.btn-ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--color-cream);
+  --btn-shadow: var(--color-pink);
+  border-color: var(--color-cream);
+}
+.btn-ghost:hover {
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+.btn-ink {
+  --btn-bg: var(--color-ink);
+  --btn-fg: var(--color-cream);
+  --btn-shadow: var(--color-cream);
+  border-color: var(--color-ink);
+}
+.btn-line {
+  --btn-bg: transparent;
+  --btn-fg: var(--color-ink);
+  --btn-shadow: var(--color-ink);
+}
+
+/* Text links with a marker-swipe hover */
+.swipe {
+  background-image: linear-gradient(var(--swipe, var(--color-pink)), var(--swipe, var(--color-pink)));
+  background-repeat: no-repeat;
+  background-size: 100% 2px;
+  background-position: 0 100%;
+  transition: background-size 0.18s ease, color 0.18s ease;
+  padding: 0 0.15em;
+  margin: 0 -0.15em;
+}
+.swipe:hover,
+.swipe:focus-visible {
+  background-size: 100% 100%;
+  color: var(--color-ink);
+}
+
+/* ---------- Hero ---------- */
+.hero-word {
+  display: block;
+  font-size: clamp(5.5rem, min(32vw, 25svh), 19rem);
+  line-height: 0.8;
+}
+.hero-stretch {
+  display: inline-block;
+  transform-origin: left center;
+  transform: scaleX(1.38);
+}
+@keyframes linger {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(1.38);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  41% {
+    opacity: 1;
+  }
+  42% {
+    opacity: 0.55;
+  }
+  43% {
+    opacity: 1;
+  }
+  47% {
+    opacity: 0.7;
+  }
+  48% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-stretch {
+    animation: linger 2.2s cubic-bezier(0.2, 0.7, 0.1, 1) 0.35s both;
+  }
+  .spin-slow {
+    animation: spin 28s linear infinite;
+  }
+  .ticker {
+    animation: ticker 36s linear infinite;
+  }
+  .flicker {
+    animation: flicker 5s linear infinite;
+  }
+
+  /* Scroll reveals (class is added by JS, so no-JS still shows everything) */
+  .reveal-on [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s cubic-bezier(0.2, 0.7, 0.1, 1);
+    transition-delay: var(--d, 0s);
+  }
+  .reveal-on [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Poster wall ---------- */
+.poster {
+  transform: rotate(var(--tilt, 0deg));
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.7, 0.1, 1),
+    box-shadow 0.25s ease;
+  box-shadow: 0 14px 30px -12px rgb(0 0 0 / 0.85);
+}
+.poster-item:hover .poster,
+.poster-item:focus-within .poster {
+  transform: rotate(0deg) translateY(-6px) scale(1.015);
+  box-shadow: 10px 10px 0 var(--pop, var(--color-orange));
+}
+.tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 92px;
+  height: 26px;
+  transform: translateX(-50%) rotate(var(--tape-tilt, -3deg));
+  background: rgb(242 233 216 / 0.82);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.4);
+  z-index: 2;
+}
+.rail {
+  scrollbar-width: none;
+}
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- Photo frames ---------- */
+.photo {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-soot);
+}
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.06) saturate(0.92);
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+.photo:hover img {
+  transform: scale(1.04);
+}
+
+/* ---------- Receipt ---------- */
+.receipt {
+  --zig: 10px;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--zig)),
+    95% 100%,
+    90% calc(100% - var(--zig)),
+    85% 100%,
+    80% calc(100% - var(--zig)),
+    75% 100%,
+    70% calc(100% - var(--zig)),
+    65% 100%,
+    60% calc(100% - var(--zig)),
+    55% 100%,
+    50% calc(100% - var(--zig)),
+    45% 100%,
+    40% calc(100% - var(--zig)),
+    35% 100%,
+    30% calc(100% - var(--zig)),
+    25% 100%,
+    20% calc(100% - var(--zig)),
+    15% 100%,
+    10% calc(100% - var(--zig)),
+    5% 100%,
+    0 calc(100% - var(--zig))
+  );
+}
+.dashes {
+  border-top: 2px dashed currentColor;
+  opacity: 0.55;
+}
