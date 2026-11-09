@@ -65,7 +65,7 @@ export function Hero() {
         <div className="halftone absolute inset-0 text-ink opacity-30" />
       </div>
 
-      <p className="label absolute right-1.5 top-24 hidden origin-top-right -rotate-90 -translate-x-3 text-[0.62rem] text-cream/60 md:block">
+      <p className="label absolute right-2 top-24 hidden origin-top-right -translate-x-4 -rotate-90 text-[0.62rem] text-cream/50 md:block">
         Placeholder photo · not the actual bar
       </p>
 
@@ -90,7 +90,7 @@ export function Hero() {
             </span>
           </h1>
 
-          <div className="absolute -top-32 right-0 rotate-12 md:right-[6%] md:top-[18%]">
+          <div className="absolute -top-32 right-0 rotate-12 max-md:[@media(max-height:739px)]:hidden md:right-[6%] md:top-[18%]">
             <Badge />
           </div>
         </div>

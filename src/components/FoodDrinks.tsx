@@ -3,10 +3,10 @@ import { venue } from '../data/venue'
 
 export function FoodDrinks() {
   return (
-    <section id="food" aria-labelledby="food-title" className="relative bg-cream pb-20 pt-16 text-ink md:pb-28 md:pt-24">
+    <section id="food" aria-labelledby="food-title" className="relative bg-cream pb-16 pt-14 text-ink md:pb-24 md:pt-20">
       <div className="mx-auto max-w-[1500px] px-4 md:px-8">
         <header>
-          <h2 id="food-title" className="text-[clamp(5.5rem,17.5vw,16rem)]" data-reveal>
+          <h2 id="food-title" className="h-food" data-reveal>
             Food <span className="font-groovy text-[0.6em] normal-case text-orange">&amp;</span>
             <br className="md:hidden" /> Drinks
           </h2>
@@ -20,7 +20,7 @@ export function FoodDrinks() {
         </header>
 
         {/* Row 1 — the kitchen */}
-        <div className="mt-12 grid gap-6 md:mt-16 md:grid-cols-12 md:gap-8">
+        <div className="mt-9 grid gap-5 md:mt-12 md:grid-cols-12 md:gap-8">
           <figure className="photo aspect-[4/3] border-2 border-ink md:col-span-7 md:self-start" data-reveal>
             <img src={photos.dogFries.src} alt={photos.dogFries.alt} loading="lazy" decoding="async" />
             <figcaption className="label absolute left-0 top-0 bg-ink px-3 py-2 text-cream">Kitchen</figcaption>
@@ -50,14 +50,14 @@ export function FoodDrinks() {
         </div>
 
         {/* Row 2 — brunch + drinks */}
-        <div className="mt-6 grid gap-6 md:mt-8 md:grid-cols-12 md:gap-8">
+        <div className="mt-5 grid gap-5 md:mt-8 md:grid-cols-12 md:gap-8">
           <div className="relative flex flex-col justify-between overflow-hidden border-2 border-ink bg-pink p-5 md:col-span-5 md:-rotate-1 md:p-7" data-reveal>
             <svg viewBox="0 0 200 200" aria-hidden="true" className="spin-slow absolute -right-14 -top-14 h-52 w-52 text-orange">
               <path fill="currentColor" d="M100 0l14 52 38-38-14 52 52-14-38 38 52 14-52 14 38 38-52-14 14 52-38-38-14 52-14-52-38 38 14-52-52 14 38-38-52-14 52-14-38-38 52 14-14-52 38 38z" />
               <circle cx="100" cy="100" r="34" fill="#f2e9d8" />
             </svg>
             <p className="label relative">Weekend brunch by</p>
-            <h3 className="relative mt-16 font-groovy text-[4rem] normal-case leading-[0.9] md:mt-28 md:text-[5.4rem]">
+            <h3 className="relative mt-12 font-groovy text-[clamp(3.2rem,17vw,4rem)] normal-case leading-[0.9] md:mt-28 md:text-[5.4rem]">
               {venue.brunch.name}
             </h3>
             <p className="relative mt-3 font-display text-[2rem] uppercase leading-none md:text-[2.4rem]">{venue.brunch.days}</p>

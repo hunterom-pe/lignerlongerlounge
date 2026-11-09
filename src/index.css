@@ -75,12 +75,64 @@
 }
 
 /* ---------- Type helpers ---------- */
-.label {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 0.78rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+@layer components {
+  .label {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /*
+   * Display headings are sized from the viewport so the widest line always
+   * lands inside the page gutters: (viewport - gutters) / line width in em.
+   * --gutters is 2rem on phones and 4rem from 768px up.
+   */
+  .h-events {
+    font-size: calc((100vw - var(--gutters)) / 3.3);
+  }
+  .h-food {
+    font-size: calc((100vw - var(--gutters)) / 2.6);
+  }
+  .h-space {
+    font-size: calc((100vw - var(--gutters)) / 2.5);
+  }
+  .h-visit {
+    font-size: calc((100vw - var(--gutters)) / 2.3);
+  }
+  .h-address {
+    font-size: calc((100vw - var(--gutters)) / 5.4);
+  }
+  .h-footer {
+    font-size: min(calc((100vw - var(--gutters)) / 6.7), 13rem);
+  }
+  @media (min-width: 768px) {
+    .h-events {
+      font-size: min(calc((100vw - var(--gutters)) / 5.5), 15rem);
+    }
+    .h-food {
+      font-size: min(calc((100vw - var(--gutters)) / 4.5), 16rem);
+    }
+    .h-space {
+      font-size: clamp(5rem, 15vw, 12.5rem);
+    }
+    .h-visit {
+      font-size: min(21vw, 17rem);
+    }
+    .h-address {
+      font-size: min(9vw, 7rem);
+    }
+  }
+}
+
+:root {
+  --gutters: 2rem;
+}
+@media (min-width: 768px) {
+  :root {
+    --gutters: 4rem;
+  }
 }
 .outline-text {
   color: transparent;
@@ -165,7 +217,8 @@
 /* ---------- Hero ---------- */
 .hero-word {
   display: block;
-  font-size: clamp(5.5rem, min(32vw, 25svh), 19rem);
+  /* LONGER is ~2.95em wide once stretched, so this fills gutter to gutter on phones */
+  font-size: clamp(4.5rem, min(calc((100vw - var(--gutters)) / 2.95), 25svh), 19rem);
   line-height: 0.8;
 }
 .hero-stretch {
@@ -189,6 +242,16 @@
 @keyframes ticker {
   to {
     transform: translateX(-50%);
+  }
+}
+@keyframes nudge {
+  0%,
+  60%,
+  100% {
+    transform: translateX(0);
+  }
+  80% {
+    transform: translateX(6px);
   }
 }
 @keyframes flicker {
@@ -225,6 +288,10 @@
   }
   .flicker {
     animation: flicker 5s linear infinite;
+  }
+  .nudge {
+    display: inline-block;
+    animation: nudge 2.4s ease-in-out infinite;
   }
 
   /* Scroll reveals (class is added by JS, so no-JS still shows everything) */
@@ -283,8 +350,21 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: contrast(1.06) saturate(0.92);
+  /* One shared grade: a little warmth, a little contrast. --lift brightens the darkest shots. */
+  filter: sepia(0.14) saturate(1.04) contrast(1.05) brightness(var(--lift, 1.02));
   transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+.photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 58%, rgb(17 16 15 / 0.26)),
+    linear-gradient(rgb(247 122 40 / 0.06), rgb(247 122 40 / 0.06));
+}
+.photo figcaption {
+  z-index: 1;
 }
 .photo:hover img {
   transform: scale(1.04);

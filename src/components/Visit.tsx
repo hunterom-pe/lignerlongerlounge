@@ -12,16 +12,16 @@ function Row({ k, children }: { k: string; children: React.ReactNode }) {
 export function Visit() {
   const { address, phone, social } = venue
   return (
-    <section id="visit" aria-labelledby="visit-title" className="relative overflow-hidden bg-orange pb-20 pt-16 text-ink md:pb-28 md:pt-24">
-      <div className="mx-auto grid max-w-[1500px] gap-12 px-4 md:grid-cols-12 md:gap-8 md:px-8">
+    <section id="visit" aria-labelledby="visit-title" className="relative overflow-hidden bg-orange pb-16 pt-14 text-ink md:pb-24 md:pt-20">
+      <div className="mx-auto grid max-w-[1500px] gap-10 px-4 md:grid-cols-12 md:gap-8 md:px-8">
         <div className="md:col-span-7">
           <p className="label mb-3">Visit</p>
-          <h2 id="visit-title" className="text-[clamp(6rem,21vw,17rem)]" data-reveal>
+          <h2 id="visit-title" className="h-visit" data-reveal>
             Find us
           </h2>
 
           <address className="mt-6 not-italic" data-reveal>
-            <p className="font-display text-[clamp(3.2rem,9vw,7rem)] uppercase leading-[0.88]">
+            <p className="h-address font-display uppercase leading-[0.88]">
               {address.street}
               <br />
               <span className="outline-text [--stroke:var(--color-ink)]">
@@ -79,11 +79,11 @@ export function Visit() {
                 </dl>
               ) : (
                 <p className="mt-1">
-                  They move with the calendar. Check{' '}
+                  Check{' '}
                   <a href={social.instagram.url} target="_blank" rel="noreferrer" className="underline decoration-2 underline-offset-2 hover:bg-ink hover:text-cream">
                     Instagram
                   </a>{' '}
-                  or give the bar a call before you head over.
+                  or call for current hours.
                 </p>
               )}
               <div className="dashes my-4" />

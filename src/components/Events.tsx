@@ -65,9 +65,9 @@ function PosterItem({ event, index }: { event: EventItem; index: number }) {
 
 export function Events() {
   return (
-    <section id="events" aria-labelledby="events-title" className="relative overflow-hidden bg-soot pb-20 pt-16 md:pb-28 md:pt-24">
+    <section id="events" aria-labelledby="events-title" className="relative overflow-hidden bg-soot pb-16 pt-14 md:pb-24 md:pt-24">
       <div className="mx-auto max-w-[1500px] px-4 md:px-8">
-        <header className="mb-12 md:mb-20">
+        <header className="mb-6 md:mb-14">
           <div className="mb-3 flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
             <p className="label text-orange">On the wall</p>
             {eventsAreSamples && (
@@ -76,23 +76,23 @@ export function Events() {
               </p>
             )}
           </div>
-          <h2 id="events-title" className="text-[clamp(5rem,17vw,15rem)]">
+          <h2 id="events-title" className="h-events">
             What’s <span className="outline-text">Happening</span>
           </h2>
+          <p className="label mt-5 flex items-center justify-end gap-2 text-cream/70 md:hidden" aria-hidden="true">
+            Swipe the wall <span className="nudge text-base leading-none text-orange">→</span>
+          </p>
         </header>
       </div>
 
       {/* Phones: a swipeable rail of flyers. Desktop: an uneven poster wall. */}
-      <ul className="rail mx-auto flex max-w-[1500px] snap-x snap-mandatory scroll-px-5 gap-6 overflow-x-auto px-5 pb-6 pt-4 md:grid md:grid-cols-12 md:items-start md:gap-x-10 md:gap-y-20 md:overflow-visible md:px-8">
+      <ul className="rail mx-auto flex max-w-[1500px] snap-x snap-mandatory scroll-px-4 gap-5 overflow-x-auto overscroll-x-contain px-4 pb-4 pt-4 md:grid md:grid-cols-12 md:items-start md:gap-x-10 md:gap-y-20 md:overflow-visible md:px-8">
         {events.map((e, i) => (
           <PosterItem key={e.id} event={e} index={i} />
         ))}
       </ul>
-      <p className="label mt-2 text-center text-cream/50 md:hidden" aria-hidden="true">
-        ← swipe the wall →
-      </p>
 
-      <div className="mx-auto mt-16 max-w-[1500px] px-4 md:mt-28 md:px-8">
+      <div className="mx-auto mt-12 max-w-[1500px] px-4 md:mt-24 md:px-8">
         <div className="grid gap-10 border-t-2 border-cream pt-8 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-4">
             <h3 className="text-[3.6rem] md:text-[4.6rem]">
@@ -123,7 +123,7 @@ export function Events() {
             <a href={venue.links.liveMusic} target="_blank" rel="noreferrer" className="btn btn-ghost">
               Live music &amp; tickets ↗
             </a>
-            <p className="label text-[0.68rem] text-cream/55 md:text-right">
+            <p className="label text-[0.7rem] text-cream/60 md:text-right">
               The real calendar lives on Instagram {venue.social.instagram.handle}
             </p>
           </div>
