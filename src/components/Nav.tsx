@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { venue } from '../data/venue'
+import { EightBall } from './EightBall'
 
 const links = [
   { href: '#events', label: 'Events' },
@@ -55,9 +56,8 @@ export function Nav() {
     >
       <nav aria-label="Main" className="mx-auto flex h-16 max-w-[1500px] items-center justify-between px-4 md:px-8">
         <a href="#top" className="group flex shrink-0 items-center gap-2.5 whitespace-nowrap font-display text-[1.7rem] uppercase leading-none tracking-wide" onClick={() => setOpen(false)}>
-          <svg viewBox="0 0 64 64" className="h-6 w-6 text-orange transition-transform duration-500 group-hover:rotate-180" aria-hidden="true">
-            <path fill="currentColor" d="M32 2l6 21 21-6-15 15 15 15-21-6-6 21-6-21-21 6 15-15L5 17l21 6z" />
-          </svg>
+          {/* Subtle "nudge" on hover: a slight roll and lift, off for reduced motion */}
+          <EightBall className="h-6 w-6 shrink-0 transition-transform duration-300 ease-out motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:-rotate-[25deg]" />
           <span>
             Linger Longer <span className="hidden sm:max-md:inline lg:inline">Lounge</span>
           </span>
