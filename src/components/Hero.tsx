@@ -1,5 +1,6 @@
 import { photos } from '../data/photos'
 import { venue } from '../data/venue'
+import { OpenStatus } from './OpenStatus'
 
 const tickerWords = [...venue.pillars, venue.neighborhood, 'Come for one', 'Stay for another']
 
@@ -72,10 +73,16 @@ export function Hero() {
       <div className="mx-auto flex w-full max-w-[1500px] flex-1 flex-col justify-end px-4 pb-8 pt-24 md:px-8 md:pb-12">
         <div className="relative">
           <p className="label mb-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-cream md:mb-5">
-            <span className="flicker inline-block h-2.5 w-2.5 rounded-full bg-acid shadow-[0_0_12px_2px] shadow-acid/70" />
-            <span>{venue.neighborhood}</span>
-            <span className="text-orange">/</span>
-            <span>{venue.address.street}</span>
+            <OpenStatus />
+            {/* each slash travels with the item after it, so wrapped lines never end on "/" */}
+            <span className="flex gap-x-3">
+              <span className="text-orange">/</span>
+              <span>{venue.neighborhood}</span>
+            </span>
+            <span className="flex gap-x-3">
+              <span className="text-orange">/</span>
+              <span>{venue.address.street}</span>
+            </span>
           </p>
 
           <h1 aria-label={venue.name} className="text-cream">

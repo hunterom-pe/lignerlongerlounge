@@ -51,7 +51,7 @@ Not real: every event and performer on the poster wall, all photography (stock, 
 
 ## Needed for a production version
 
-- **Hours.** Not published on the current site and third-party listings disagree, so none are shown. Add them in `venue.ts`.
+- **Hours.** Open daily 4 PM – 2 AM, set in `venue.hours` in `venue.ts`. The hero's OPEN NOW / CLOSED indicator and the Visit receipt both read from it, using Phoenix time.
 - Original photography: the room, bar, pool table, stage, patio/exterior, Der Wurst and Requinto food, drinks, crowd shots.
 - The real logo files and any brand fonts.
 - Real flyers and the event calendar, plus ticket links.

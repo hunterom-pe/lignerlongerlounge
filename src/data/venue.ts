@@ -23,11 +23,17 @@ export const venue = {
     'https://www.google.com/maps/dir/?api=1&destination=Linger+Longer+Lounge%2C+6522+N+16th+St%2C+Phoenix%2C+AZ+85016',
 
   /**
-   * TODO(owner): Hours are NOT published on the current website and third-party
-   * listings disagree, so none are shown. Fill this in to display them, e.g.
-   *   [{ days: 'Mon–Fri', hours: '4pm – 2am' }, { days: 'Sat–Sun', hours: '11am – 2am' }]
+   * Opening hours: the single source for the hero OPEN NOW / CLOSED indicator
+   * and the Visit section. Times are 24-hour local Phoenix time.
+   * A close time earlier than the open time means "the next morning".
    */
-  hours: [] as { days: string; hours: string }[],
+  hours: {
+    timeZone: 'America/Phoenix',
+    opens: { hour: 16, minute: 0 }, // 4 PM
+    closes: { hour: 2, minute: 0 }, // 2 AM, following calendar day
+    days: 'Open daily',
+    display: '4 PM – 2 AM',
+  },
 
   social: {
     instagram: { handle: '@lingerlongeraz', url: 'https://www.instagram.com/lingerlongeraz' },

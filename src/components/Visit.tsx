@@ -69,23 +69,9 @@ export function Visit() {
               </dl>
               <div className="dashes my-4" />
               <p className="font-bold uppercase tracking-widest">Hours</p>
-              {venue.hours.length > 0 ? (
-                <dl className="mt-1">
-                  {venue.hours.map((h) => (
-                    <Row key={h.days} k={h.days}>
-                      {h.hours}
-                    </Row>
-                  ))}
-                </dl>
-              ) : (
-                <p className="mt-1">
-                  Check{' '}
-                  <a href={social.instagram.url} target="_blank" rel="noreferrer" className="underline decoration-2 underline-offset-2 hover:bg-ink hover:text-cream">
-                    Instagram
-                  </a>{' '}
-                  or call for current hours.
-                </p>
-              )}
+              <dl className="mt-1">
+                <Row k={venue.hours.days}>{venue.hours.display}</Row>
+              </dl>
               <div className="dashes my-4" />
               <div className="flex items-baseline justify-between font-bold uppercase tracking-widest">
                 <span>Total</span>
