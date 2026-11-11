@@ -104,7 +104,7 @@ export function Hero() {
 
         <div className="mt-6 flex flex-col gap-6 md:mt-8 md:flex-row md:items-end md:justify-between">
           <p className="max-w-[16ch] -rotate-2 font-groovy text-[2rem] leading-[1.02] text-pink md:text-[2.9rem]">
-            Come for one. Stay for another.
+            Never Just One.
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-4">
             <a href="#events" className="btn">
